@@ -1,0 +1,421 @@
+
+
+-- Classe Usuário
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class Usuario {
+    private static List<Usuario> usuarios = new ArrayList<>();
+    private int id;
+    private String nome;
+    private String email;
+    private String senha;
+    private String perfil;
+
+
+    // Construtor
+    public Usuario(int id, String nome, String email, String senha, String perfil) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.perfil = perfil;
+    }
+
+
+    // Get e Set
+    public int getId() {
+        return id;
+    }
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    public String getNome() {
+        return nome;
+    }
+
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+
+    public String getEmail() {
+        return email;
+    }
+
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+    public String getSenha() {
+        return senha;
+    }
+
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+
+    public String getPerfil() {
+        return perfil;
+    }
+
+
+    public void setPerfil(String perfil) {
+        this.perfil = perfil;
+    }
+
+
+    public static List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+
+    // Método para login
+    public boolean login(String email, String senha) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    // Método para cadastrar usuário
+    public static void cadastrar(Usuario usuario) {
+        usuarios.add(usuario);
+    }
+
+
+    // Método para verificar se o usuário é administrador
+    public boolean isAdministrador() {
+        return this.perfil.equals("administrador");
+    }
+}
+
+
+-- Classe “Tipo Problema”:
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class TipoProblema {
+    private static List<TipoProblema> tiposProblema = new ArrayList<>();
+    private int id;
+    private String nome;
+    private String descricao;
+
+
+    // Construtor
+    public TipoProblema(int id, String nome, String descricao) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+    }
+
+
+    // Get e Set
+    public int getId() {
+        return id;
+    }
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    public String getNome() {
+        return nome;
+    }
+
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+
+    public static List<TipoProblema> getTiposProblema() {
+        return tiposProblema;
+    }
+
+
+    // Método para cadastrar tipo de problema
+    public static void cadastrar(TipoProblema tipoProblema) {
+        tiposProblema.add(tipoProblema);
+    }
+}
+
+
+
+-- Classe “Denúncia”:
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+
+public class Denuncia {
+    private static List<Denuncia> denuncias = new ArrayList<>();
+    private int id;
+    private int idUsuario;
+    private int idTipoProblema;
+    private String descricao;
+    private String localizacao;
+    private String status;
+    private Date dataCriacao;
+    private Date dataSolucao;
+
+
+    // Construtor
+    public Denuncia(int id, int idUsuario, int idTipoProblema, String descricao, String localizacao, String status) {
+        this.id = id;
+        this.idUsuario = idUsuario;
+        this.idTipoProblema = idTipoProblema;
+        this.descricao = descricao;
+        this.localizacao = localizacao;
+        this.status = status;
+        this.dataCriacao = new Date(); // Data atual
+    }
+
+
+    // Getters e Setters
+    public int getId() {
+        return id;
+    }
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+
+    public int getIdTipoProblema() {
+        return idTipoProblema;
+    }
+
+
+    public void setIdTipoProblema(int idTipoProblema) {
+        this.idTipoProblema = idTipoProblema;
+    }
+
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+
+    public String getLocalizacao() {
+        return localizacao;
+    }
+
+
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
+    }
+
+
+    public String getStatus() {
+        return status;
+    }
+
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
+
+
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+
+    public Date getDataSolucao() {
+        return dataSolucao;
+    }
+
+
+    public void setDataSolucao(Date dataSolucao) {
+        this.dataSolucao = dataSolucao;
+    }
+
+
+    public static List<Denuncia> getDenuncias() {
+        return denuncias;
+    }
+
+
+    // Método para cadastrar denúncia
+    public static void cadastrar(Denuncia denuncia) {
+        denuncias.add(denuncia);
+    }
+
+
+    // Método para fechar denúncia
+    public void fechar() {
+        this.status = "fechada";
+        this.dataSolucao = new Date(); // Data de solução
+    }
+
+
+    // Método para visualizar denúncias
+    public static List<Denuncia> visualizarDenuncias() {
+        return denuncias;
+    }
+}
+
+
+
+-- Classe “Curtidas”:
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+
+public class Curtida {
+    private static List<Curtida> curtidas = new ArrayList<>();
+    private int id;
+    private int idDenuncia;
+    private int idUsuario;
+    private Date dataCurtida;
+
+
+    // Construtor
+    public Curtida(int id, int idDenuncia, int idUsuario) {
+        this.id = id;
+        this.idDenuncia = idDenuncia;
+        this.idUsuario = idUsuario;
+        this.dataCurtida = new Date(); // Data de curtida
+    }
+
+
+    // Get e Set
+    public int getId() {
+        return id;
+    }
+
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    public int getIdDenuncia() {
+        return idDenuncia;
+    }
+
+
+    public void setIdDenuncia(int idDenuncia) {
+        this.idDenuncia = idDenuncia;
+    }
+
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+
+    public Date getDataCurtida() {
+        return dataCurtida;
+    }
+
+
+    public void setDataCurtida(Date dataCurtida) {
+        this.dataCurtida = dataCurtida;
+    }
+
+
+    public static List<Curtida> getCurtidas() {
+        return curtidas;
+    }
+
+
+    // Método para adicionar curtida
+    public static void adicionarCurtida(Curtida curtida) {
+        curtidas.add(curtida);
+    }
+
+
+    // Método para remover curtida
+    public static void removerCurtida(int idCurtida) {
+        curtidas.removeIf(curtida -> curtida.getId() == idCurtida);
+    }
+}
+
+
+
+-- Classe “Dashboard”:
+
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class Dashboard {
+
+
+    public Map<String, Integer> gerarRelatorioMensal() {
+        Map<String, Integer> relatorio = new HashMap<>();
+        // Gerar o relatório mensal (exemplo simples)
+        relatorio.put("Total de denúncias", Denuncia.getDenuncias().size());
+        return relatorio;
+    }
+
+
+    public Map<String, Integer> contarDenunciasPorTipo() {
+        Map<String, Integer> contador = new HashMap<>();
+        for (Denuncia denuncia : Denuncia.getDenuncias()) {
+            TipoProblema tipoProblema = TipoProblema.getTiposProblema().get(denuncia.getIdTipoProblema());
+            contador.put(tipoProblema.getNome(), contador.getOrDefault(tipoProblema.getNome(), 0) + 1);
+        }
+        return contador;
+    }
+}
+
+
